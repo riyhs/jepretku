@@ -472,8 +472,8 @@
         </main>
     </div>
 
-    <div class="center">
-        <h1>HALOOOOO TEST</h1>
+    <div class="py-5 center">
+        <h1>HALOOOOO TEST 2</h1>
     </div>
 
     @if (Route::has('login'))
