@@ -7,9 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/anu', function () {
-    return view('anu');
-})->name('anu');
+Route::get('/photobooth', function () {
+    return view('photobooth');
+})->name('photobooth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
