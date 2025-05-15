@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-row flex-1 justify-center items-center bg-orange-400">
+                        <div class="flex flex-row flex-1 justify-center items-center">
                             <div class="flex gap-4">
                                 <div class="flex flex-col gap-4 items-center">
                                     <video id="video" autoplay playsinline
@@ -53,7 +53,8 @@
                                     </video>
 
                                     <div class="btn-group">
-                                        <button id="captureBtn" class="px-6 py-3">Capture</button>
+                                        <button id="captureBtn"
+                                            class="px-6 py-3 bg-orange-400 rounded-lg text-white">Capture</button>
                                         <button id="retakeBtn">Retake</button>
                                         <button id="nextBtn">Next</button>
                                         <button id="saveBtn">Save as JPG</button>
