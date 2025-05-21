@@ -93,11 +93,11 @@
 
         // Initialize webcam
         const video = document.getElementById('video');
-        // navigator.mediaDevices.getUserMedia({
-        //         video: true
-        //     })
-        //     .then(stream => video.srcObject = stream)
-        //     .catch(err => alert('Camera error: ' + err));
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(stream => video.srcObject = stream)
+            .catch(err => alert('Camera error: ' + err));
 
         // Initialize Fabric canvas 
         const canvas = new fabric.Canvas('canvas', {
