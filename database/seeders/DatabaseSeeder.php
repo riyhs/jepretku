@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Snapshot;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Snapshot;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         Snapshot::factory(50)->create();
+
+        Admin::factory(1)->create();
     }
 }

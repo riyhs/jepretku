@@ -14,7 +14,7 @@ class SnapshotController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::guard('web')->user();
 
         $snapshots = $user->snapshots;
 
@@ -36,7 +36,7 @@ class SnapshotController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('web')->user();
 
         $request->validate([
             'title' => 'nullable|string|max:255',
@@ -111,7 +111,7 @@ class SnapshotController extends Controller
      */
     public function showImage(Snapshot $snapshot)
     {
-        if ($snapshot->user_id !== Auth::user()->id) {
+        if ($snapshot->user_id !== Auth::guard('web')->user()->id) {
             abort(403);
         }
 
