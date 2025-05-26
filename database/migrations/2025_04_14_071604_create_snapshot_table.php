@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('snapshot', function (Blueprint $table) {
             $table->id();
-            $table->string("filename");
+            $table->string("path");
             $table->string("title");
             $table->foreignId("user_id");
             $table->timestamps();

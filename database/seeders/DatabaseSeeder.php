@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Snapshot;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Riyaldi',
+            'email' => 'tes@mail.com',
+            'password' => 'kepokepo'
         ]);
+        User::factory(10)->create();
+
+        Snapshot::factory(50)->create();
     }
 }
