@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Snapshot extends Pivot
 {
+    use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      */
     protected $fillable = [
         'title',
-        'filename',
+        'path',
         'user_id',
     ];
 
