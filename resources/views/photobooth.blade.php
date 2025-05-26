@@ -224,10 +224,24 @@
                 multiplier: multiplier
             });
 
-            const link = document.createElement('a');
-            link.href = dataURL;
-            link.download = 'canvas_export.jpg';
-            link.click();
+            fetch('/snapshots', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: JSON.stringify({
+                        title: 'Jepretku Snapshot',
+                        image: dataURL
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Snapshot saved successfully!');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         });
     </script>
 </x-app-layout>

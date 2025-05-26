@@ -36,24 +36,42 @@ class SnapshotController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
         $user = Auth::user();
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images/' . $user->id, 'private');
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'image' => 'required|string',
+        ]);
+
+        $image = $request->input('image');
+
+        if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
+            $image = substr($image, strpos($image, ',') + 1);
+            $type = strtolower($type[1]);
+
+            if (!in_array($type, ['jpg', 'jpeg', 'png', 'gif'])) {
+                throw new \Exception('Invalid image type.');
+            }
+
+            $image = base64_decode($image);
+            if ($image === false) {
+                throw new \Exception('Base64 decode failed.');
+            }
+        } else {
+            throw new \Exception('Did not match data URL format.');
         }
+
+        $filename = uniqid() . '.' . $type;
+
+        Storage::disk('private')->put('images/' . $user->id . '/' . $filename, $image);
 
         Snapshot::create([
             'user_id' => $user->id,
             'title' => $request->input('title'),
-            'path' => $imagePath,
+            'path' => 'images/' . $user->id . '/' . $filename,
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Snapshot saved successfully!');
+        return response()->json(['success' => true, 'message' => 'Snapshot saved successfully!']);
     }
 
     /**

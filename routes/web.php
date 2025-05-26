@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', [SnapshotController::class, 'index'])->name('dashboard');
-    Route::post('/dashboard', [SnapshotController::class, 'store'])->name('snapshots.store');
+    Route::post('/snapshots', [SnapshotController::class, 'store'])->name('snapshots.store');
     Route::get('/snapshots/{snapshot}/image', [SnapshotController::class, 'showImage'])->name('snapshots.image');
 });
 

@@ -18,10 +18,11 @@ class SnapshotFactory extends Factory
      */
     public function definition(): array
     {
+        $fakeId = fake()->numberBetween(1, 11);
         return [
             'title' => fake()->name(),
-            'path' => fake()->name(),
-            'user_id' => fake()->numberBetween(1, 11),
+            'path' => 'images/' . $fakeId . '/' . Str::random(10) . '.jpg',
+            'user_id' => $fakeId,
         ];
     }
 }
