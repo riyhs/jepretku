@@ -1,371 +1,121 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session login kamu
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JepretKu - Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #111;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 20px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
-      position: relative;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #ff6600;
-    }
-
-    nav a.active::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background: #ff6600;
-      bottom: -5px;
-      left: 0;
-    }
-
-    .auth-buttons a {
-      text-decoration: none;
-      margin-left: 10px;
-      padding: 8px 15px;
-      border-radius: 10px;
-      font-weight: 600;
-      color: white;
-      background-color: #ff7a00;
-      transition: 0.3s;
-    }
-
-    .auth-buttons a:hover {
-      background-color: #e55c00;
-      transform: scale(1.05);
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      background-color: #fff;
-      text-align: center;
-    }
-
-    .hero-text {
-      max-width: 600px;
-    }
-
-    .hero-text h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .hero-text p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    .hero-text .get-started {
-      padding: 10px 20px;
-      background-color: #ff7a00;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .hero-text .get-started:hover {
-      background-color: #e55c00;
-      transform: scale(1.05);
-    }
-
-    .hero-image img {
-      width: 200px;
-      margin-top: 30px;
-    }
-
-    .features {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .features-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .features-title img {
-      height: 60px;
-    }
-
-    .feature-boxes {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .feature-box {
-      background: linear-gradient(135deg, #ff9900, #ff5e62);
-      color: white;
-      padding: 20px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 300px;
-      text-align: center;
-      box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .feature-box:hover {
-      transform: translateY(-5px);
-    }
-
-    .features-caption {
-      margin-top: 40px;
-      font-size: 1rem;
-    }
-
-    .gradient-text {
-      background: linear-gradient(to right, #ff9900, #ff5e62, #e60073);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-    }
-
-    .section {
-      padding: 40px 20px;
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    .faq, .tutorial {
-      text-align: center;
-    }
-
-    /* FAQ Accordion */
-    .faq-item {
-      text-align: left;
-      margin-bottom: 15px;
-      width: 100%;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .faq-question {
-      width: 100%;
-      background: linear-gradient(to right, #ff9900, #ff5e62);
-      color: white;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: left;
-    }
-
-    .faq-answer {
-      display: none;
-      padding: 10px 15px;
-      background: #fff3e0;
-      border-radius: 10px;
-      margin-top: 5px;
-      color: #333;
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* Responsive tweaks */
-    @media (min-width: 768px) {
-      .hero {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-        padding: 60px 50px;
-      }
-
-      .hero-text {
-        max-width: 50%;
-      }
-
-      .hero-image img {
-        width: 300px;
-      }
-
-      .feature-boxes {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .feature-box {
-        width: 200px;
-      }
     }
   </style>
 </head>
-<body>
-
+<body class="bg-white text-gray-900">
   <!-- Header -->
-  <header>
-    <div class="header-left">
-      <img src="logo_jepretku.png" alt="Logo" class="logo">
-      <span class="brand-name">JepretKu</span>
+  <header class="flex flex-wrap items-center justify-between px-6 py-4 shadow-md bg-white">
+    <div class="flex items-center space-x-3">
+      <img src="logo_jepretku.png" alt="Logo" class="w-10 h-10" />
+      <h1 class="text-xl font-bold">JepretKu</h1>
     </div>
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#">About</a>
-      <a href="#faq">FAQ</a>
+    <nav class="w-full md:w-auto flex justify-center md:flex-row space-x-6 mt-4 md:mt-0 text-sm font-medium hidden md:flex">
+      <a href="#home" class="hover:text-orange-500 border-b-2 border-orange-500 pb-1">Home</a>
+      <a href="#about" class="hover:text-orange-500">About</a>
+      <a href="#faq" class="hover:text-orange-500">FAQ</a>
     </nav>
-    <div class="auth-buttons">
-      <a href="register.php">Register</a>
-      <a href="login.php">Login</a>
+    <div class="space-x-3 mt-4 md:mt-0">
+      <?php if ($isLoggedIn): ?>
+        <a href="dashboard.php" class="text-sm font-semibold text-green-600">Dashboard</a>
+        <a href="logout.php" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded text-sm">Logout</a>
+      <?php else: ?>
+        <a href="register.php" class="text-sm font-semibold">Register</a>
+        <a href="login.php" class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm">Login</a>
+      <?php endif; ?>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Capture the Moment,<br>Keep the Memory!</h1>
-      <p>Make every event unforgettable with our high-quality photobooth experience.</p>
-      <button class="get-started">Get Started</button>
+  <section class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20" id="home">
+    <div class="md:w-1/2 text-center md:text-left space-y-4">
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Capture the Moment,<br />Keep the Memory!</h2>
+      <p class="text-gray-700">Make every event unforgettable with our high-quality photobooth experience!</p>
+      <a href="#get-started" class="bg-gradient-to-br from-orange-400 to-pink-500 text-white font-semibold px-6 py-2 rounded-lg inline-block">Get Started</a>
     </div>
-    <div class="hero-image">
-      <img src="logo_jepretku3d.png" alt="3D Logo">
+    <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
+      <img src="logo_jepretku3d.png" alt="3D Logo" class="w-48 md:w-72">
     </div>
   </section>
 
   <!-- Features Section -->
-  <section class="features">
-    <div class="features-title">
-      <h2>Why Choose Our Photobooth ?</h2>
-    </div>
-    <p>We bring fun, creativity, and high-quality instant prints to your special moments!</p>
+  <section class="text-center px-4 py-10">
+    <h2 class="text-2xl font-bold mb-2">Why Choose Our Photobooth?</h2>
+    <p class="mb-8">We bring fun, creativity, and high-quality instant prints to your special moments!</p>
 
-    <div class="feature-boxes">
-      <div class="feature-box">
-        <h3>📸<br>Snap & Capture</h3>
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4 justify-center">
+      <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
+        <h3 class="text-lg font-bold mb-2">📸<br>Snap & Capture</h3>
         <p>Instantly take high-quality photos using our device or photobooth.</p>
       </div>
-      <div class="feature-box">
-        <h3>🎨<br>Photo Effect & Filters</h3>
+      <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
+        <h3 class="text-lg font-bold mb-2">🎨<br>Photo Effect & Filters</h3>
         <p>Enhance your pictures with fun filters and creative effects.</p>
       </div>
-      <div class="feature-box">
-        <h3>🕓<br>Photo History Access</h3>
+      <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
+        <h3 class="text-lg font-bold mb-2">🕓<br>Photo History Access</h3>
         <p>Revisit, download, and relive all your past photo moments.</p>
       </div>
-      <div class="feature-box">
-        <h3>📤<br>One Click Sharing</h3>
+      <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
+        <h3 class="text-lg font-bold mb-2">📤<br>One Click Sharing</h3>
         <p>Instantly share your best shots on Instagram, Whatsapp, and more.</p>
       </div>
     </div>
 
-    <div class="features-caption">
-      <p><strong>Your Best Moments, Captured Instantly!</strong></p>
-      <p class="gradient-text">Snap, Edit & Share – Try it Now</p>
+    <div class="mt-10">
+      <p class="font-bold">Your Best Moments, Captured Instantly!</p>
+      <p class="bg-gradient-to-r from-orange-400 via-pink-500 to-pink-400 bg-clip-text text-transparent font-bold text-lg">Snap, Edit & Share – Try it Now</p>
     </div>
   </section>
 
   <!-- Tutorial Section -->
-  <section class="section tutorial" id="tutorial">
-    <h2>Tutorial</h2>
+  <section class="text-center px-4 py-10" id="about">
+    <h2 class="text-2xl font-bold mb-4">Tutorial</h2>
     <p>Learn how to use our photobooth step by step with ease!</p>
-    <!-- Video or tutorial steps could be added here -->
   </section>
 
   <!-- FAQ Section -->
-  <section class="section faq" id="faq">
-    <h2>FAQ</h2>
-    <p>Find answers to common questions about our service.</p>
-
-    <div class="faq-item">
-      <button class="faq-question">Apa itu JepretKu?</button>
-      <div class="faq-answer">
-        <p>JepretKu adalah layanan photobooth online yang memudahkan pengguna mengambil foto, edit, dan bagikan dengan mudah.</p>
+  <section id="faq" class="text-center px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">FAQ</h2>
+    <p class="mb-6">Find answers to common questions about our service.</p>
+    <div class="max-w-md mx-auto space-y-4 text-left">
+      <div class="faq-item border rounded-lg overflow-hidden">
+        <button class="faq-question w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white px-4 py-3 font-semibold text-left">Apa itu JepretKu?</button>
+        <div class="faq-answer hidden px-4 py-3 bg-orange-50 text-gray-700">JepretKu adalah layanan photobooth online yang memudahkan pengguna mengambil foto, edit, dan bagikan dengan mudah.</div>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">Apakah saya harus daftar?</button>
-      <div class="faq-answer">
-        <p>Ya, Anda perlu mendaftar agar dapat mengakses riwayat foto dan fitur premium lainnya.</p>
+      <div class="faq-item border rounded-lg overflow-hidden">
+        <button class="faq-question w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white px-4 py-3 font-semibold text-left">Apakah saya harus daftar?</button>
+        <div class="faq-answer hidden px-4 py-3 bg-orange-50 text-gray-700">Ya, Anda perlu mendaftar agar dapat mengakses riwayat foto dan fitur premium lainnya.</div>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">Bisakah saya mengunduh foto saya?</button>
-      <div class="faq-answer">
-        <p>Ya, semua foto yang Anda ambil dapat diunduh langsung dari akun Anda.</p>
+      <div class="faq-item border rounded-lg overflow-hidden">
+        <button class="faq-question w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white px-4 py-3 font-semibold text-left">Bisakah saya mengunduh foto saya?</button>
+        <div class="faq-answer hidden px-4 py-3 bg-orange-50 text-gray-700">Ya, semua foto yang Anda ambil dapat diunduh langsung dari akun Anda.</div>
       </div>
     </div>
   </section>
 
   <!-- FAQ JS -->
   <script>
-    document.querySelectorAll(".faq-question").forEach((btn) =>
+    document.querySelectorAll(".faq-question").forEach((btn) => {
       btn.addEventListener("click", () => {
-        btn.parentElement.classList.toggle("active");
-      })
-    );
+        const item = btn.parentElement;
+        const answer = item.querySelector(".faq-answer");
+        answer.classList.toggle("hidden");
+      });
+    });
   </script>
-
 </body>
 </html>
