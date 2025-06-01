@@ -48,10 +48,18 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the snapshots for the blog post.
+     * Get the snapshots for user.
      */
     public function snapshots(): HasMany
     {
         return $this->hasMany(Snapshot::class);
+    }
+
+    /**
+     * Get the login log for user.
+     */
+    public function loginLogs(): HasMany
+    {
+        return $this->hasMany(LoginLog::class);
     }
 }
