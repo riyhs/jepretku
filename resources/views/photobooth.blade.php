@@ -25,7 +25,7 @@
                     <div class="flex flex-col">
                         <div class="flex flex-row">
                             <div id="timer" class="flex-1 flex justify-center items-center">
-                                <label for="timerSelect">Timer:</label>
+                                <label for="timerSelect" >Timer : </label>
                                 <select id="timerSelect">
                                     <option value="0">0s</option>
                                     <option value="3">3s</option>
@@ -34,8 +34,8 @@
                                 </select>
                             </div>
 
-                            <div id="filter" class="flex-1 flex justify-center items-center">
-                                <label for="filterSelect">Filter:</label>
+                            <div id="filter" class="flex-1 flex justify-center items-center ">
+                                <label for="filterSelect">Filter : </label>
                                 <select id="filterSelect">
                                     <option value="none">None</option>
                                     <option value="grayscale">Grayscale</option>
@@ -54,7 +54,7 @@
 
                                     <div class="btn-group">
                                         <button id="captureBtn"
-                                            class="px-6 py-3 bg-orange-400 rounded-lg text-white">Capture</button>
+                                            class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">Capture</button>
                                         <button id="retakeBtn">Retake</button>
                                         <button id="nextBtn">Next</button>
                                         <button id="saveBtn">Save as JPG</button>
