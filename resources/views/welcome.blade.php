@@ -8,21 +8,25 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JepretKu - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
     </style>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-white text-gray-900">
     <!-- Header -->
     <header class="flex flex-wrap items-center justify-between px-6 py-4 shadow-md bg-white">
         <div class="flex items-center space-x-3">
-            <img src="logo_jepretku.png" alt="Logo" class="w-10 h-10" />
+            <img src="img/logo_jepretku.png" alt="Logo" class="w-10 h-10" />
             <h1 class="text-xl font-bold">JepretKu</h1>
         </div>
         <nav
@@ -31,20 +35,20 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
             <a href="#about" class="hover:text-orange-500">About</a>
             <a href="#faq" class="hover:text-orange-500">FAQ</a>
         </nav>
-        <div class="space-x-3 mt-4 md:mt-0">
+        <div class="space-x-3  md:mt-0">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm font-semibold text-green-600">
+                <a href="{{ url('/dashboard') }}" class="text-sm font-semibold text-white bg-gradient-to-br from-orange-400 to-pink-500 p-2 rounded-md">
                     Dashboard
                 </a>
             @else
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="text-sm font-semibold">
+                    <a href="{{ route('register') }}" class="text-sm font-bold">
                         Register
                     </a>
                 @endif
 
                 <a href="{{ route('login') }}"
-                    class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm">
+                    class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm font-bold">
                     Log in
                 </a>
             @endauth
@@ -52,21 +56,21 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
     </header>
 
     <!-- Hero Section -->
-    <section class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20" id="home">
+    <section class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-10" id="home">
         <div class="md:w-1/2 text-center md:text-left space-y-4">
             <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Capture the Moment,<br />Keep the Memory!</h2>
             <p class="text-gray-700">Make every event unforgettable with our high-quality photobooth experience!</p>
-            <a href="#get-started"
+            <a href="{{ route('register') }}"
                 class="bg-gradient-to-br from-orange-400 to-pink-500 text-white font-semibold px-6 py-2 rounded-lg inline-block">Get
                 Started</a>
         </div>
         <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
-            <img src="logo_jepretku3d.png" alt="3D Logo" class="w-48 md:w-72">
+            <img src="img/logo_jepretku3D.png" alt="3D Logo" class="w-sm md:w-[500px]">
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="text-center px-4 py-10">
+    <section class="text-center px-8 py-10">
         <h2 class="text-2xl font-bold mb-2">Why Choose Our Photobooth?</h2>
         <p class="mb-8">We bring fun, creativity, and high-quality instant prints to your special moments!</p>
 
