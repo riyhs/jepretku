@@ -14,7 +14,7 @@
         #canvas {
             border: 1px solid #999;
             width: 270px;
-            height: 480px;
+            height: 690px;
         }
     </style>
 
@@ -65,7 +65,7 @@
                                         <button id="saveBtn">Save as JPG</button>
                                     </div>
                                 </div>
-                                <canvas id="canvas" width="270" height="480"></canvas>
+                                <canvas id="canvas" width="270" height="690"></canvas>
                             </div>
                         </div>
                     </div>
@@ -76,19 +76,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
     <script>
-        // TODO
-        // 1. Fix stretched image after capture
-        // 2. Add step for adding sticker
-        // 3. Add timer -> DONE
-
         const width = 270;
-        const height = 480;
+        const height = 690;
         const padding = 10;
 
         let uploadedImages = [];
         let step = 0;
         let state = 'capture';
-        let timerInterval = null; // Variabel untuk menyimpan interval timer
+        let timerInterval = null;
 
         let captureButton = document.getElementById('captureBtn');
         let retakeButton = document.getElementById('retakeBtn');
@@ -158,8 +153,12 @@
 
             const dataURL = tmp.toDataURL();
             fabric.Image.fromURL(dataURL, img => {
-                const scaleX = (width - 2 * padding) / img.width;
-                const scaleY = (height / 3.3 - padding) / img.height;
+                const targetWidth = width - (2 * padding); // Contoh: 270 - 20 = 250px
+                const targetHeight = (targetWidth * 3) / 4; // Contoh: (250 * 3) / 4 = 187.5px
+
+                const scaleX = targetWidth / img.width;
+                const scaleY = targetHeight / img.height;
+
                 img.set({
                     scaleX,
                     scaleY,
