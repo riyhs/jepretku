@@ -25,7 +25,7 @@
                     <div class="flex flex-col">
                         <div class="flex flex-row">
                             <div id="timer" class="flex-1 flex justify-center items-center">
-                                <label for="timerSelect" >Timer : </label>
+                                <label for="timerSelect">Timer : </label>
                                 <select id="timerSelect">
                                     <option value="0">0s</option>
                                     <option value="3">3s</option>
@@ -48,9 +48,14 @@
                         <div class="flex flex-row flex-1 justify-center items-center">
                             <div class="flex gap-4">
                                 <div class="flex flex-col gap-4 items-center">
-                                    <video id="video" autoplay playsinline
-                                        style="border:1px solid#999; width:600px; height:450px;">
-                                    </video>
+                                    <div style="position: relative; width:600px; height:450px;">
+                                        <video id="video" autoplay playsinline
+                                            style="border:1px solid#999; width:100%; height:100%;">
+                                        </video>
+                                        <div id="countdownDisplay"
+                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); display: none;">
+                                        </div>
+                                    </div>
 
                                     <div class="btn-group">
                                         <button id="captureBtn"
@@ -74,7 +79,7 @@
         // TODO
         // 1. Fix stretched image after capture
         // 2. Add step for adding sticker
-        // 3. Add timer
+        // 3. Add timer -> DONE
 
         const width = 270;
         const height = 480;
@@ -83,11 +88,15 @@
         let uploadedImages = [];
         let step = 0;
         let state = 'capture';
+        let timerInterval = null; // Variabel untuk menyimpan interval timer
 
         let captureButton = document.getElementById('captureBtn');
         let retakeButton = document.getElementById('retakeBtn');
         let nextButton = document.getElementById('nextBtn');
         let saveButton = document.getElementById('saveBtn');
+
+        const timerSelect = document.getElementById('timerSelect');
+        const countdownDisplay = document.getElementById('countdownDisplay');
 
         applyButtonState();
 
@@ -104,8 +113,44 @@
             selection: false
         });
 
-        // Capture button
         captureButton.addEventListener('click', () => {
+            const selectedTime = parseInt(timerSelect.value, 10);
+
+            if (selectedTime === 0) {
+                performCapture();
+            } else {
+                startTimer(selectedTime);
+            }
+        });
+
+        // Timer
+        function startTimer(duration) {
+            captureButton.disabled = true;
+            timerSelect.disabled = true;
+            filterSelect.disabled = true;
+
+            let timeLeft = duration;
+            countdownDisplay.style.display = 'block';
+            countdownDisplay.textContent = timeLeft;
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                countdownDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    countdownDisplay.style.display = 'none';
+                    performCapture();
+
+                    captureButton.disabled = false;
+                    timerSelect.disabled = false;
+                    filterSelect.disabled = false;
+                }
+            }, 1000);
+        }
+
+        // Capture
+        function performCapture() {
             const tmp = document.createElement('canvas');
             tmp.width = video.videoWidth;
             tmp.height = video.videoHeight;
@@ -128,7 +173,8 @@
                 stackAndRender();
                 changeState('evaluate');
             });
-        });
+        }
+
 
         // Retake button
         retakeButton.addEventListener('click', () => {
