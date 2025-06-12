@@ -18,7 +18,15 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard', [SnapshotController::class, 'index'])->name('dashboard');
     Route::post('/snapshots', [SnapshotController::class, 'store'])->name('snapshots.store');
     Route::get('/snapshots/{snapshot}/image', [SnapshotController::class, 'showImage'])->name('snapshots.image');
-
+    Route::get('/snapshots/{snapshot}/download', [SnapshotController::class, 'download'])
+        ->middleware(['auth'])
+        ->name('snapshots.download');
+    Route::delete('/snapshots/{snapshot}', [SnapshotController::class, 'destroy'])
+        ->middleware(['auth'])
+        ->name('snapshots.destroy');
+    Route::patch('/snapshots/{snapshot}', [SnapshotController::class, 'update'])
+        ->middleware(['auth'])
+        ->name('snapshots.update');
     Route::get('/photobooth', function () {
         return view('photobooth');
     })->name('photobooth');

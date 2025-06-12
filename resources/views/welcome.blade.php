@@ -9,10 +9,14 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- ikon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -37,20 +41,20 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
         </nav>
         <div class="space-x-3  md:mt-0">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm font-semibold text-white bg-gradient-to-br from-orange-400 to-pink-500 p-2 rounded-md">
-                    Dashboard
-                </a>
+            <a href="{{ url('/dashboard') }}" class="text-sm font-semibold text-white bg-gradient-to-br from-orange-400 to-pink-500 p-2 rounded-md">
+                Dashboard
+            </a>
             @else
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="text-sm font-bold">
-                        Register
-                    </a>
-                @endif
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="text-sm font-bold">
+                Register
+            </a>
+            @endif
 
-                <a href="{{ route('login') }}"
-                    class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm font-bold">
-                    Log in
-                </a>
+            <a href="{{ route('login') }}"
+                class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm font-bold">
+                Log in
+            </a>
             @endauth
         </div>
     </header>
@@ -61,7 +65,7 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
             <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Capture the Moment,<br />Keep the Memory!</h2>
             <p class="text-gray-700">Make every event unforgettable with our high-quality photobooth experience!</p>
             <a href="{{ route('register') }}"
-                class="bg-gradient-to-br from-orange-400 to-pink-500 text-white font-semibold px-6 py-2 rounded-lg inline-block">Get
+                class="bg-gradient-to-br from-orange-400 to-pink-500 text-white font-semibold px-6 py-2 rounded-lg inline-block hover:scale-105 hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)]   hover:-translate-y-2 transition-all duration-300">Get
                 Started</a>
         </div>
         <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
@@ -70,25 +74,49 @@ $isLoggedIn = isset($_SESSION['user_id']); // Ganti 'user_id' sesuai session log
     </section>
 
     <!-- Features Section -->
-    <section class="text-center px-8 py-10">
+    <section class="text-center px-8 py-10 md:mt-12">
         <h2 class="text-2xl font-bold mb-2">Why Choose Our Photobooth?</h2>
         <p class="mb-8">We bring fun, creativity, and high-quality instant prints to your special moments!</p>
 
         <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4 justify-center">
-            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold mb-2">📸<br>Snap & Capture</h3>
+            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] 
+                hover:-translate-y-2 transition-all duration-300">
+                <h3 class="text-lg font-bold mb-2">
+                    <span class="material-symbols-outlined" style="font-size: 40px;">
+                        photo_camera
+                    </span>
+                    <br>Snap & Capture
+                </h3>
                 <p>Instantly take high-quality photos using our device or photobooth.</p>
             </div>
-            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold mb-2">🎨<br>Photo Effect & Filters</h3>
+            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] 
+                hover:-translate-y-2 transition-all duration-300">
+                <h3 class="text-lg font-bold mb-2">
+                    <span class="material-symbols-outlined" style="font-size: 40px;">
+                        palette
+                    </span>
+                    <br>Photo Effect & Filters
+                </h3>
                 <p>Enhance your pictures with fun filters and creative effects.</p>
             </div>
-            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold mb-2">🕓<br>Photo History Access</h3>
+            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] 
+                hover:-translate-y-2 transition-all duration-300">
+                <h3 class="text-lg font-bold mb-2">
+                    <span class="material-symbols-outlined" style="font-size: 40px;">
+                        history
+                    </span>
+                    <br>Photo History Access
+                </h3>
                 <p>Revisit, download, and relive all your past photo moments.</p>
             </div>
-            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold mb-2">📤<br>One Click Sharing</h3>
+            <div class="bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] 
+                hover:-translate-y-2 transition-all duration-300">
+                <h3 class="text-lg font-bold mb-2">
+                    <span class="material-symbols-outlined" style="font-size: 40px;">
+                        share
+                    </span>
+                    <br>One Click Sharing
+                </h3>
                 <p>Instantly share your best shots on Instagram, Whatsapp, and more.</p>
             </div>
         </div>

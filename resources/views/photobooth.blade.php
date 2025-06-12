@@ -25,7 +25,7 @@
                     <div class="flex flex-col">
                         <div class="flex flex-row">
                             <div id="timer" class="flex-1 flex justify-center items-center">
-                                <label for="timerSelect" >Timer : </label>
+                                <label for="timerSelect">Timer : </label>
                                 <select id="timerSelect">
                                     <option value="0">0s</option>
                                     <option value="3">3s</option>
@@ -224,7 +224,7 @@
                 multiplier: multiplier
             });
 
-            fetch('/snapshots', {
+            fetch(' /snapshots ', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
