@@ -25,7 +25,7 @@
                     <div class="flex flex-col">
                         <div class="flex flex-row">
                             <div id="timer" class="flex-1 flex justify-center items-center">
-                                <label for="timerSelect" >Timer : </label>
+                                <label for="timerSelect">Timer : </label>
                                 <select id="timerSelect">
                                     <option value="0">0s</option>
                                     <option value="3">3s</option>
@@ -52,12 +52,19 @@
                                         style="border:1px solid#999; width:600px; height:450px;">
                                     </video>
 
-                                    <div class="btn-group">
-                                        <button id="captureBtn"
-                                            class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">Capture</button>
-                                        <button id="retakeBtn">Retake</button>
-                                        <button id="nextBtn">Next</button>
-                                        <button id="saveBtn">Save as JPG</button>
+                                    <div class="btn-group flex gap-2">
+                                        <button id="captureBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Capture
+                                        </button>
+                                        <button id="retakeBtn" class="px-6 py-3  bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Retake
+                                        </button>
+                                        <button id="nextBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Next
+                                        </button>
+                                        <button id="saveBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Save as JPG
+                                        </button>
                                     </div>
                                 </div>
                                 <canvas id="canvas" width="270" height="480"></canvas>
@@ -224,7 +231,7 @@
                 multiplier: multiplier
             });
 
-            fetch('/snapshots', {
+            fetch(' /snapshots ', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

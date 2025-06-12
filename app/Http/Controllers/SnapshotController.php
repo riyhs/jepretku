@@ -93,17 +93,47 @@ class SnapshotController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Snapshot $snapshot)
     {
-        //
+        if ($snapshot->user_id !== Auth::id()) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized.'], 403);
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+        ]);
+
+        $snapshot->update([
+            'title' => $validated['title'],
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Judul berhasil diperbarui.',
+            'new_title' => $snapshot->title
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Snapshot $snapshot)
     {
-        //
+        // 1. Keamanan: Pastikan hanya pemilik foto yang bisa menghapus
+        if ($snapshot->user_id !== Auth::id()) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized action.'], 403);
+        }
+
+        // 2. Hapus file fisik dari storage terlebih dahulu
+        if (Storage::disk('private')->exists($snapshot->path)) {
+            Storage::disk('private')->delete($snapshot->path);
+        }
+
+        // 3. Hapus record dari database
+        $snapshot->delete();
+
+        // 4. Kirim response sukses dalam format JSON
+        return response()->json(['success' => true, 'message' => 'Foto berhasil dihapus.']);
     }
 
     /**
@@ -123,5 +153,23 @@ class SnapshotController extends Controller
         }
 
         return response()->file($path);
+    }
+
+    public function download(Snapshot $snapshot)
+    {
+
+        if (!Auth::check() || $snapshot->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        if (!Storage::disk('private')->exists($snapshot->path)) {
+            abort(404, 'File not found.'); 
+        }
+
+        $originalFilename = basename($snapshot->path);
+        $suggestedFilename = 'photobooth-' . \Illuminate\Support\Str::slug($snapshot->title ?: 'image') . '-' . $originalFilename;
+        $filePath = Storage::disk('private')->path($snapshot->path);
+
+        return response()->download($filePath, $suggestedFilename);
     }
 }
