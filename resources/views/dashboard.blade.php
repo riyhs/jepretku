@@ -216,7 +216,6 @@
                 if (button.classList.contains('view-button')) {
                     const imageUrl = button.dataset.src;
 
-                    // Jika URL ada, buat dan tampilkan lightbox
                     if (imageUrl) {
                         basicLightbox.create(`
                         <img src="${imageUrl}" style="max-width: 90vw; max-height: 90vh;">
@@ -224,35 +223,28 @@
                     }
                 }
 
-                // === FUNGSI SHARE ===
                 if (button.classList.contains('share-button')) {
-                    // Gunakan fungsi async agar kita bisa memakai 'await'
                     const sharePhoto = async () => {
                         const shareTitle = button.dataset.title;
-                        const pageUrl = button.dataset.url; // URL fallback
+                        const pageUrl = button.dataset.url; 
                         const imageUrl = button.dataset.imageUrl;
                         const filename = button.dataset.filename;
 
-                        // Cek apakah browser mendukung navigator.share
                         if (!navigator.share) {
-                            // Jika tidak, langsung jalankan fallback
                             showManualSharePopup(shareTitle, pageUrl);
-                            return; // Hentikan fungsi
+                            return; 
                         }
 
                         try {
-                            // 1. Ambil data gambar dari server
                             const response = await fetch(imageUrl);
                             const blob = await response.blob();
                             const file = new File([blob], filename, {
                                 type: blob.type
                             });
 
-                            // 2. Cek apakah browser bisa berbagi file ini
                             if (navigator.canShare && navigator.canShare({
                                     files: [file]
                                 })) {
-                                // 3. Jika bisa, coba bagikan file
                                 await navigator.share({
                                     files: [file],
                                     title: shareTitle,
@@ -260,7 +252,6 @@
                                 });
                                 console.log('File berhasil dibagikan.');
                             } else {
-                                // 4. Jika tidak bisa berbagi file, bagikan link sebagai gantinya
                                 await navigator.share({
                                     title: shareTitle,
                                     text: `Lihat foto keren ini: ${shareTitle}`,
@@ -269,23 +260,17 @@
                                 console.log('Link berhasil dibagikan.');
                             }
                         } catch (error) {
-                            // Jika user membatalkan dialog share atau ada error lain
                             console.log('Gagal membagikan:', error);
-                            // Jika gagal karena alasan apa pun, tawarkan fallback
                             showManualSharePopup(shareTitle, pageUrl);
                         }
                     };
-
-                    // Jalankan fungsi share
                     sharePhoto();
                 }
 
-                // Menutup popup manual jika tombol close diklik
                 if (button.id === 'close-share-popup') {
                     button.closest('#manual-share-popup').classList.add('hidden');
                 }
 
-                // Menyalin link jika tombol copy diklik
                 if (button.id === 'copy-share-url') {
                     const urlInput = document.getElementById('share-url-input');
                     urlInput.select();
@@ -297,7 +282,6 @@
                 }
             });
 
-            // Menutup popup jika area luar (overlay) diklik
             const sharePopup = document.getElementById('manual-share-popup');
             sharePopup.addEventListener('click', function(event) {
                 if (event.target === this) {
@@ -314,7 +298,6 @@
 
                 popup.querySelector('#share-title-preview').textContent = title;
                 popup.querySelector('#share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${urlEncoded}`;
-                popup.querySelector('#share-twitter').href = `https://twitter.com/intent/tweet?url=${urlEncoded}&text=${textEncoded}`;
                 popup.querySelector('#share-whatsapp').href = `https://api.whatsapp.com/send?text=${textEncoded}%20${urlEncoded}`;
                 popup.querySelector('#share-url-input').value = url;
 
