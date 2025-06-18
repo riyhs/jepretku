@@ -22,7 +22,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-pink-500">
+    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-pink-400">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
