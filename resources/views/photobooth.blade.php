@@ -20,6 +20,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex flex-col">
+
                         <div class="flex flex-row flex-wrap justify-center items-center controls-container">
                             <div class="flex-1 flex justify-center items-center min-w-[200px]">
                                 <label for="timerSelect">Timer : </label>
@@ -54,6 +55,7 @@
                                     <video id="video" autoplay playsinline
                                         style="border:1px solid#999; width:100%; height:100%; object-fit: cover;">
                                     </video>
+
                                     <div id="countdownDisplay"
                                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); display: none;">
                                     </div>
@@ -425,7 +427,7 @@
                 multiplier
             });
 
-            fetch('/snapshots', {
+            fetch(' /snapshots ', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

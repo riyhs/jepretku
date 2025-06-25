@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
+
     <!-- Tailwind -->
     @vite('resources/css/app.css')
 
@@ -20,16 +22,16 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-pink-500">
+    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-pink-400">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white shadow-md">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+        <header class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
         @endisset
 
         <!-- Page Content -->
@@ -37,6 +39,9 @@
             {{ $slot }}
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+
 </body>
 
 </html>
