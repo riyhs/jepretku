@@ -63,10 +63,22 @@
                                     </div>
                                     <div class="btn-group">
                                         <button id="captureBtn"
-                                            class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">Capture</button>
-                                        <button id="retakeBtn">Retake</button>
-                                        <button id="nextBtn">Next</button>
-                                        <button id="saveBtn">Save as JPG</button>
+                                            class="px-6 py-3 mx-2 bg-green-500 hover:bg-green-700 rounded-lg text-white font-semibold">
+                                            Capture
+                                        </button>
+
+                                        <button id="retakeBtn"
+                                            class="px-6 py-3 mx-2 bg-yellow-500 hover:bg-orange-400 rounded-lg text-white font-semibold">
+                                            Retake
+                                        </button>
+                                        <button id="nextBtn"
+                                            class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Next
+                                        </button>
+                                        <button id="saveBtn"
+                                            class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                            Save Snapshot
+                                        </button>
                                     </div>
                                 </div>
                                 <canvas id="canvas" width="270" height="660"></canvas>
@@ -170,7 +182,7 @@
                     background: '#ffffff',
                     texts: [{
                         content: 'Jepretku',
-                        left: 260,
+                        left: 520,
                         top: 615,
                         fontSize: 20,
                         fill: '#000',
