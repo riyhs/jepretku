@@ -8,8 +8,6 @@
     <style>
         #canvas {
             border: 1px solid #999;
-            width: 270px;
-            height: 660px;
         }
 
         .controls-container>div {
@@ -50,39 +48,37 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-row flex-wrap flex-1 justify-center items-center mt-4">
-                            <div class="flex gap-4">
-                                <div class="flex flex-col gap-4 items-center">
-                                    <div style="position: relative; width:600px; height:450px;">
-                                        <video id="video" autoplay playsinline
-                                            style="border:1px solid#999; width:100%; height:100%; object-fit: cover;">
-                                        </video>
-                                        <div id="countdownDisplay"
-                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); display: none;">
-                                        </div>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button id="captureBtn"
-                                            class="px-6 py-3 mx-2 bg-green-500 hover:bg-green-700 rounded-lg text-white font-semibold">
-                                            Capture
-                                        </button>
-
-                                        <button id="retakeBtn"
-                                            class="px-6 py-3 mx-2 bg-yellow-500 hover:bg-orange-400 rounded-lg text-white font-semibold">
-                                            Retake
-                                        </button>
-                                        <button id="nextBtn"
-                                            class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Next
-                                        </button>
-                                        <button id="saveBtn"
-                                            class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Save Snapshot
-                                        </button>
+                        <div class="flex flex-col lg:flex-row flex-wrap flex-1 justify-center items-center mt-4 gap-4">
+                            <div class="flex flex-col gap-4 items-center w-full max-w-[600px]">
+                                <div style="position: relative; width: 100%;" class="aspect-[4/3]">
+                                    <video id="video" autoplay playsinline
+                                        style="border:1px solid#999; width:100%; height:100%; object-fit: cover;">
+                                    </video>
+                                    <div id="countdownDisplay"
+                                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); display: none;">
                                     </div>
                                 </div>
-                                <canvas id="canvas" width="270" height="660"></canvas>
+                                <div class="btn-group">
+                                    <button id="captureBtn"
+                                        class="px-6 py-3 mx-2 bg-green-500 hover:bg-green-700 rounded-lg text-white font-semibold">
+                                        Capture
+                                    </button>
+
+                                    <button id="retakeBtn"
+                                        class="px-6 py-3 mx-2 bg-yellow-500 hover:bg-orange-400 rounded-lg text-white font-semibold">
+                                        Retake
+                                    </button>
+                                    <button id="nextBtn"
+                                        class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                        Next
+                                    </button>
+                                    <button id="saveBtn"
+                                        class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                        Save Snapshot
+                                    </button>
+                                </div>
                             </div>
+                            <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>
@@ -228,6 +224,8 @@
                 initializeLayout();
             });
 
+            window.addEventListener('resize', initializeLayout);
+
             navigator.mediaDevices.getUserMedia({
                     video: true
                 })
@@ -235,9 +233,42 @@
                 .catch(err => alert('Camera error: ' + err));
         });
 
+        function getResponsiveLayout(layoutId) {
+            const originalConfig = layouts[layoutId];
+            const config = JSON.parse(JSON.stringify(originalConfig));
+
+            const breakpoint = 1024;
+            if (window.innerWidth < breakpoint) {
+                const availableWidth = window.innerWidth - 40;
+
+                if (config.canvas.width > availableWidth) {
+                    const scale = availableWidth / config.canvas.width;
+
+                    config.canvas.width *= scale;
+                    config.canvas.height *= scale;
+
+                    config.photos.forEach(photo => {
+                        photo.x *= scale;
+                        photo.y *= scale;
+                        photo.width *= scale;
+                        photo.height *= scale;
+                    });
+
+                    if (config.design.texts) {
+                        config.design.texts.forEach(text => {
+                            text.left *= scale;
+                            text.top *= scale;
+                            text.fontSize *= scale;
+                        });
+                    }
+                }
+            }
+
+            return config;
+        }
 
         function initializeLayout() {
-            const config = layouts[currentLayoutId];
+            const config = getResponsiveLayout(currentLayoutId);
 
             canvas.backgroundColor = config.design.background;
 
@@ -251,7 +282,6 @@
             stackAndRender();
         }
 
-
         function resizeCanvas(newWidth, newHeight) {
             canvasElement.width = newWidth;
             canvasElement.height = newHeight;
@@ -261,9 +291,8 @@
             canvas.setHeight(newHeight);
         }
 
-
         function performCapture() {
-            const config = layouts[currentLayoutId];
+            const config = getResponsiveLayout(currentLayoutId);
             if (step >= config.poses) return;
 
             const photoConfig = config.photos[step];
@@ -291,9 +320,8 @@
             });
         }
 
-
         function stackAndRender() {
-            const config = layouts[currentLayoutId];
+            const config = getResponsiveLayout(currentLayoutId);
 
             canvas.clear();
             canvas.backgroundColor = config.design.background;
@@ -324,7 +352,6 @@
             canvas.requestRenderAll();
         }
 
-
         captureButton.addEventListener('click', () => {
             const selectedTime = parseInt(timerSelect.value, 10);
             if (selectedTime === 0) {
@@ -333,7 +360,6 @@
                 startTimer(selectedTime);
             }
         });
-
 
         function startTimer(duration) {
             captureButton.disabled = true;
@@ -353,34 +379,29 @@
             }, 1000);
         }
 
-
         retakeButton.addEventListener('click', () => changeState('capture'));
         nextButton.addEventListener('click', () => {
             step++;
             changeState('capture');
         });
 
-
         function changeState(newState) {
             state = newState;
             applyButtonState();
         }
 
-
         function applyButtonState() {
-            const config = layouts[currentLayoutId];
+            const config = getResponsiveLayout(currentLayoutId);
             captureButton.hidden = (state === 'evaluate' || step >= config.poses);
             retakeButton.hidden = (state === 'capture');
             nextButton.hidden = (state === 'capture' || step >= config.poses - 1);
             saveButton.hidden = (state === 'capture' || step < config.poses - 1);
         }
 
-
         filterSelect.addEventListener('change', () => {
             applyFilterToAll();
             canvas.requestRenderAll();
         });
-
 
         function applyFilterToAll() {
             const choice = filterSelect.value;
@@ -394,9 +415,10 @@
             });
         }
 
-
         saveButton.addEventListener('click', () => {
-            const multiplier = 1920 / canvas.getHeight();
+            const originalConfig = layouts[currentLayoutId];
+            const multiplier = 1920 / originalConfig.canvas.height;
+
             const dataURL = canvas.toDataURL({
                 format: 'jpeg',
                 quality: 1,
