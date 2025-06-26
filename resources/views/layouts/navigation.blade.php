@@ -81,6 +81,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('photobooth')" :active="request()->routeIs('photobooth')">
+                {{ __('Photobooth') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
