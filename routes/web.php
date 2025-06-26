@@ -32,6 +32,10 @@ Route::middleware('auth:web')->group(function () {
     })->name('photobooth');
 });
 
+Route::get('/admin', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
