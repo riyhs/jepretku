@@ -66,14 +66,21 @@
                                         Capture
                                     </button>
 
+                                    <button id="resetBtn"
+                                        class="px-6 py-3 mx-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-semibold">
+                                        Reset All
+                                    </button>
+
                                     <button id="retakeBtn"
                                         class="px-6 py-3 mx-2 bg-yellow-500 hover:bg-orange-400 rounded-lg text-white font-semibold">
                                         Retake
                                     </button>
+
                                     <button id="nextBtn"
                                         class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
                                         Next
                                     </button>
+
                                     <button id="saveBtn"
                                         class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
                                         Save Snapshot
@@ -197,6 +204,7 @@
         let currentLayoutId = Object.keys(layouts)[0];
 
         const captureButton = document.getElementById('captureBtn');
+        const resetButton = document.getElementById('resetBtn');
         const retakeButton = document.getElementById('retakeBtn');
         const nextButton = document.getElementById('nextBtn');
         const saveButton = document.getElementById('saveBtn');
@@ -292,6 +300,10 @@
             canvas.setWidth(newWidth);
             canvas.setHeight(newHeight);
         }
+
+        resetButton.addEventListener('click', () => {
+            initializeLayout();
+        });
 
         function performCapture() {
             const config = getResponsiveLayout(currentLayoutId);
@@ -395,6 +407,7 @@
         function applyButtonState() {
             const config = getResponsiveLayout(currentLayoutId);
             captureButton.hidden = (state === 'evaluate' || step >= config.poses);
+            resetButton.hidden = (state === 'capture');
             retakeButton.hidden = (state === 'capture');
             nextButton.hidden = (state === 'capture' || step >= config.poses - 1);
             saveButton.hidden = (state === 'capture' || step < config.poses - 1);
@@ -439,7 +452,10 @@
                     })
                 })
                 .then(response => response.json())
-                .then(data => alert('Snapshot saved successfully!'))
+                .then(data => {
+                    alert('Snapshot saved successfully!');
+                    initializeLayout();
+                })
                 .catch((error) => console.error('Error:', error));
         });
     </script>
