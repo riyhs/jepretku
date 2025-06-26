@@ -18,10 +18,9 @@
                                 class="w-full h-48 object-cover pt-3">
 
                             <div
-                                class="absolute inset-0 bg-transparent group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center space-x-4">
-
+                                class="absolute inset-0 bg-black/50 lg:bg-transparent group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center space-x-4">
                                 <div
-                                    class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-3">
+                                    class="flex space-x-3 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 
                                     <button title="Lihat Foto"
                                         class="view-button p-2 rounded-full bg-white hover:bg-gray-200"
@@ -155,7 +154,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script>
