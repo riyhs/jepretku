@@ -3,11 +3,11 @@
 Jepretku is a simple digital photobooth application built with Laravel. It allows users to capture, view, and manage their photos in an elegant interface.
 
 ## Contributors
-| No. | Name                      | NIM            |GitHub               |
-|----|---------------------------|--------------------|--------------------|
-| 1  | Riyaldi Hasan Setiawan | L0122141 | [GitHub](https://github.com/riyhs) | 
-| 2  | Rifqi Makarim | L0123122 | [GitHub](https://github.com/RifqiMakarim) |
-| 3  | Rasendria Acyuta Aji Candra | L0123116 | [GitHub](https://github.com/rasengasukacoding) |
+| No. | Name                        | NIM      | GitHub                                         |
+| --- | --------------------------- | -------- | ---------------------------------------------- |
+| 1   | Riyaldi Hasan Setiawan      | L0122141 | [GitHub](https://github.com/riyhs)             |
+| 2   | Rifqi Makarim               | L0123122 | [GitHub](https://github.com/RifqiMakarim)      |
+| 3   | Rasendria Acyuta Aji Candra | L0123116 | [GitHub](https://github.com/rasengasukacoding) |
 
 ## Features ✨
 
@@ -49,8 +49,22 @@ Jepretku is a simple digital photobooth application built with Laravel. It allow
    ```bash
    php artisan serve
    ```
+6. **Open the URL that generated after run php artisan serve**
 
 ## Screenshots 🖼️
 
-(Add some screenshots of the application here)
+| Home                            |
+| ------------------------------- |
+| ![](screenshots/1.png?raw=true) |
 
+| Dashboard                       |
+| ------------------------------- |
+| ![](screenshots/2.png?raw=true) |
+
+| Photobooth                      |
+| ------------------------------- |
+| ![](screenshots/3.png?raw=true) |
+
+| Admin Dashboard                 |
+| ------------------------------- |
+| ![](screenshots/4.png?raw=true) |
