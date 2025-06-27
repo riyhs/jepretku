@@ -11,8 +11,6 @@ class LoginLog extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'title',
-        'path',
         'user_id',
     ];
 
