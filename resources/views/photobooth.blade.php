@@ -56,49 +56,30 @@
                                         style="border:1px solid#999; width:100%; height:100%; object-fit: cover;">
                                     </video>
 
-                                    <div class="btn-group flex gap-2">
-                                        <button id="captureBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Ambil Foto
-                                        </button>
-                                        <button id="retakeBtn" class="px-6 py-3  bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Ambil Ulang Foto
-                                        </button>
-                                        <button id="nextBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Selanjutnya
-                                        </button>
-                                        <button id="saveBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Simpan sebagai JPG
-                                        </button>
-                                    </div>
-
                                     <div id="countdownDisplay"
                                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); display: none;">
                                     </div>
                                 </div>
-                                <div class="btn-group">
+                                <div class="btn-group flex gap-2">
                                     <button id="captureBtn"
-                                        class="px-6 py-3 mx-2 bg-green-500 hover:bg-green-700 rounded-lg text-white font-semibold">
-                                        Capture
+                                        class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                        Ambil Foto
                                     </button>
-
                                     <button id="resetBtn"
                                         class="px-6 py-3 mx-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-semibold">
-                                        Reset All
+                                        Reset Semua
                                     </button>
-
                                     <button id="retakeBtn"
-                                        class="px-6 py-3 mx-2 bg-yellow-500 hover:bg-orange-400 rounded-lg text-white font-semibold">
-                                        Retake
+                                        class="px-6 py-3  bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                        Ambil Ulang Foto
                                     </button>
-
                                     <button id="nextBtn"
-                                        class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                        Next
+                                        class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg text-white font-semibold">
+                                        Selanjutnya
                                     </button>
-
                                     <button id="saveBtn"
-                                        class="px-6 py-3 mx-2 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                        Save Snapshot
+                                        class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg text-white font-semibold">
+                                        Simpan Foto
                                     </button>
                                 </div>
                             </div>
