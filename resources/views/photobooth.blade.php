@@ -54,16 +54,16 @@
 
                                     <div class="btn-group flex gap-2">
                                         <button id="captureBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Capture
+                                            Ambil Foto
                                         </button>
                                         <button id="retakeBtn" class="px-6 py-3  bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Retake
+                                            Ambil Ulang Foto
                                         </button>
                                         <button id="nextBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Next
+                                            Selanjutnya
                                         </button>
                                         <button id="saveBtn" class="px-6 py-3 bg-red-400 hover:bg-orange-600 rounded-lg text-white font-semibold">
-                                            Save as JPG
+                                            Simpan sebagai JPG
                                         </button>
                                     </div>
                                 </div>

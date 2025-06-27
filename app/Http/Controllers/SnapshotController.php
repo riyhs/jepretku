@@ -71,7 +71,7 @@ class SnapshotController extends Controller
             'path' => 'images/' . $user->id . '/' . $filename,
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Snapshot saved successfully!']);
+        return response()->json(['success' => true, 'message' => 'Foto Berhasil Disimpan!']);
     }
 
     /**

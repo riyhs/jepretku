@@ -78,9 +78,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <h1 class="text-xl font-bold hover:text-orange-400"> Jepret<span class=" text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Ku</span></h1>
         </div>
         <nav class="w-full md:w-auto md:flex-row space-x-8 mt-4 md:mt-0 text-sm font-medium hidden md:flex">
-            <a href="#home" class="hover:text-orange-500 transition-colors">Home</a>
-            <a href="#features" class="hover:text-orange-500 transition-colors">Features</a>
-            <a href="#gallery" class="hover:text-orange-500 transition-colors">Gallery</a>
+            <a href="#home" class="hover:text-orange-500 transition-colors">Beranda</a>
+            <a href="#features" class="hover:text-orange-500 transition-colors">Fitur</a>
+            <a href="#gallery" class="hover:text-orange-500 transition-colors">Galeri</a>
             <a href="#faq" class="hover:text-orange-500 transition-colors">FAQ</a>
         </nav>
         <div class="space-x-3 md:mt-0">
@@ -91,12 +91,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
             @else
             @if (Route::has('register'))
             <a href="{{ route('register') }}" class="text-sm font-bold hover:text-orange-500 transition-colors">
-                Register
+                Daftar
             </a>
             @endif
 
             <a href="{{ route('login') }}" class="bg-gradient-to-br from-orange-400 to-pink-500 text-white py-2 px-4 rounded text-sm font-bold hover:shadow-lg hover:shadow-orange-400/30 hover:scale-110 transform transition-all duration-300 inline-block">
-                Log in
+                Masuk
             </a>
             @endauth
         </div>
@@ -104,10 +104,10 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <section class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-16 md:py-24" id="home">
         <div class="md:w-1/2 text-center md:text-left space-y-5 reveal">
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Capture</span> the Moment,<br />Keep the <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Memory!</span></h2>
-            <p class="text-gray-600 text-lg">Make every event unforgettable with our high-quality photobooth experience!</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Abadikan</span> Momenmu,<br />Simpan <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Kenangannya</span></h2>
+            <p class="text-gray-600 text-lg">Abadikan setiap momen tak terlupakan dengan pengalaman photobooth yang berkualitas!</p>
             <a href="{{ route('register') }}" class="bg-gradient-to-br from-orange-400 to-pink-500 text-white font-semibold px-8 py-3 rounded-lg inline-block hover:scale-105 hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.3)] hover:-translate-y-1 transition-all duration-300">
-                Get Started
+                Mulai Sekarang
             </a>
         </div>
         <div class="md:w-1/2 flex justify-center mt-12 md:mt-0 reveal" style="transition-delay: 200ms;">
@@ -117,26 +117,26 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <section class="text-center px-8 py-20 md:mt-12" id="features">
         <div class="reveal">
-            <h2 class="text-3xl font-bold mb-3">Why Choose Our Photobooth?</h2>
-            <p class="mb-12 text-gray-600 max-w-2xl mx-auto">We bring fun, creativity, and high-quality instant prints to your special moments!</p>
+            <h2 class="text-3xl font-bold mb-3">Kenapa memilih Photobooh Kami?</h2>
+            <p class="mb-12 text-gray-600 max-w-2xl mx-auto">Kami membawa keseruan, kreativitas, dan hasil cetak instan terbaik ke momen-momen spesial Anda!</p>
         </div>
 
         <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4 justify-center">
             <div class="reveal bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] hover:-translate-y-2 transition-all duration-300" style="transition-delay: 100ms;">
-                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">photo_camera</span><br>Snap & Capture</h3>
-                <p>Instantly take high-quality photos using our device or photobooth.</p>
+                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">photo_camera</span><br>Ambil Foto</h3>
+                <p>Ambil foto berkualitas tinggi secara instan menggunakan perangkat atau photobooth kami.</p>
             </div>
             <div class="reveal bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] hover:-translate-y-2 transition-all duration-300" style="transition-delay: 200ms;">
-                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">palette</span><br>Photo Effect & Filters</h3>
-                <p>Enhance your pictures with fun filters and creative effects.</p>
+                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">palette</span><br>Efek dan Filter Foto</h3>
+                <p>Percantik fotomu dengan filter seru dan efek yang kreatif.</p>
             </div>
             <div class="reveal bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] hover:-translate-y-2 transition-all duration-300" style="transition-delay: 300ms;">
-                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">history</span><br>Photo History Access</h3>
-                <p>Revisit, download, and relive all your past photo moments.</p>
+                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">history</span><br>Akses Riwayat Foto</h3>
+                <p>Lihat kembali, unduh, dan hidupkan lagi semua momen foto Anda yang telah lalu.</p>
             </div>
             <div class="reveal bg-gradient-to-br from-orange-400 to-pink-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_10px_rgba(251,146,60,0.4)] hover:-translate-y-2 transition-all duration-300" style="transition-delay: 400ms;">
-                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">share</span><br>One Click Sharing</h3>
-                <p>Instantly share your best shots on Instagram, Whatsapp, and more.</p>
+                <h3 class="text-lg font-bold mb-2"><span class="material-symbols-outlined text-4xl">share</span><br>Berbagi Sekali Klik</h3>
+                <p>Langsung bagikan foto-foto terbaikmu ke Instagram, Whatsapp, dan platform lainnya.</p>
             </div>
         </div>
     </section>
@@ -152,20 +152,20 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <div class="relative w-full flex overflow-hidden group">
             <div class="flex animate-marquee group-hover:paused">
                 <div class="flex-shrink-0 flex space-x-8 px-4">
-                    <img src="#" alt="Kreasi JepretKu 1" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 2" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 3" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 4" class="w-72 h-96 object-cover bg-slate-200  rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 5" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 6" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo1.jpg" alt="Kreasi JepretKu 1" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo2.jpg" alt="Kreasi JepretKu 2" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo3.jpg" alt="Kreasi JepretKu 3" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo4.jpg" alt="Kreasi JepretKu 4" class="w-72 h-96 object-cover bg-slate-200  rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo5.jpg" alt="Kreasi JepretKu 5" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo6.jpg" alt="Kreasi JepretKu 6" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
                 </div>
                 <div class="flex-shrink-0 flex space-x-8 px-4" aria-hidden="true">
-                    <img src="#" alt="Kreasi JepretKu 1" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 2" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 3" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 4" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 5" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
-                    <img src="#" alt="Kreasi JepretKu 6" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo1.jpg" alt="Kreasi JepretKu 1" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo2.jpg" alt="Kreasi JepretKu 2" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo3.jpg" alt="Kreasi JepretKu 3" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo4.jpg" alt="Kreasi JepretKu 4" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo5.jpg" alt="Kreasi JepretKu 5" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                    <img src="img/photo6.jpg" alt="Kreasi JepretKu 6" class="w-72 h-96 object-cover bg-slate-200 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
                 </div>
             </div>
         </div>
@@ -229,9 +229,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 <div class="col-span-1">
                     <h3 class="font-bold text-lg mb-4">Quick Links</h3>
                     <ul class="space-y-2 text-gray-600">
-                        <li><a href="#home" class="hover:text-orange-500 hover:underline">Home</a></li>
-                        <li><a href="#features" class="hover:text-orange-500 hover:underline">Features</a></li>
-                        <li><a href="#gallery" class="hover:text-orange-500 hover:underline">Gallery</a></li>
+                        <li><a href="#home" class="hover:text-orange-500 hover:underline">Beranda</a></li>
+                        <li><a href="#features" class="hover:text-orange-500 hover:underline">Fitur</a></li>
+                        <li><a href="#gallery" class="hover:text-orange-500 hover:underline">Galeri</a></li>
                         <li><a href="#faq" class="hover:text-orange-500 hover:underline">FAQ</a></li>
                     </ul>
                 </div>
